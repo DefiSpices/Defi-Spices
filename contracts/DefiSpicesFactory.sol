@@ -4,6 +4,7 @@
 pragma solidity ^0.8.0;
 
 import "./tokenStandards/ERC20_Standard.sol";
+import "./tokenStandards/ERC20_Burnable.sol";
 
 
 
@@ -12,6 +13,11 @@ contract ErcFactory{
 
     function createStandardToken(uint256 initialSupply, string memory name, string memory symbol)external returns(address TokenAddress){
         ERC20  newToken = new ERC20_Standard(msg.sender, initialSupply, name, symbol);
+        emit TokenCreated(address(newToken));
+        return address(newToken);
+    }
+    function createBurnableToken(uint256 initialSupply, string memory name, string memory symbol)external returns(address TokenAddress){
+        ERC20  newToken = new ERC20_Burnable(msg.sender, initialSupply, name, symbol);
         emit TokenCreated(address(newToken));
         return address(newToken);
     }
