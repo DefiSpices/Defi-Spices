@@ -11,9 +11,9 @@ contract ERC20_Mintable is ERC20{
         require(msg.sender == Owner, "only Owner");
         _;
     }
-    constructor( uint256 initialSupply, string memory name, string memory symbol) ERC20(name, symbol) {
-        Owner = msg.sender;
-        _mint(msg.sender, initialSupply);
+    constructor(address owner, uint256 initialSupply, string memory name, string memory symbol) ERC20(name, symbol) {
+        Owner = owner;
+        _mint(owner, initialSupply);
     }
     function mint(uint256 amount) public virtual onlyOwner{
         _mint(_msgSender(), amount);
