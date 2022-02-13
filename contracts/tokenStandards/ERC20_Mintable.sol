@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 
 import "./ERC20.sol";
 
-contract MintableERC20 is ERC20{
+contract ERC20_Mintable is ERC20{
     address public Owner;
 
     modifier onlyOwner(){
