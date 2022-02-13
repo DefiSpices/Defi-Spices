@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 
 import "./tokenStandards/ERC20_Standard.sol";
 import "./tokenStandards/ERC20_Burnable.sol";
-
+import "./tokenStandards/ERC20_Mintable.sol";
 
 
 contract ErcFactory{
@@ -21,4 +21,11 @@ contract ErcFactory{
         emit TokenCreated(address(newToken));
         return address(newToken);
     }
+
+    function createMintableToken(uint256 initialSupply, string memory name, string memory symbol)external returns(address){
+    ERC20_Mintable newToken = new ERC20_Mintable(msg.sender, initialSupply, name, symbol);
+    emit TokenCreated(address(newToken));
+
+    return address(newToken);
+  }
 }
