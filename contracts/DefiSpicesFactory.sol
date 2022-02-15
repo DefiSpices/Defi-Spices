@@ -6,6 +6,7 @@ pragma solidity ^0.8.0;
 import "./tokenStandards/ERC20_Standard.sol";
 import "./tokenStandards/ERC20_Burnable.sol";
 import "./tokenStandards/ERC20_Mintable.sol";
+import "./tokenStandards/ERC20_Capped.sol";
 
 
 contract ErcFactory{
@@ -28,4 +29,10 @@ contract ErcFactory{
 
     return address(newToken);
   }
+  function createCappedToken(uint256 initialSupply, string memory name, string memory symbol, uint256 _cap)external returns(address){
+  ERC20_Capped newToken = new ERC20_Capped(msg.sender, initialSupply, name, symbol, _cap);
+  emit TokenCreated(address(newToken));
+
+  return address(newToken);
+}
 }
