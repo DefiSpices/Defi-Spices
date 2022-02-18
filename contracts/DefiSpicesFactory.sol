@@ -7,6 +7,7 @@ import "./tokenStandards/ERC20_Standard.sol";
 import "./tokenStandards/ERC20_Burnable.sol";
 import "./tokenStandards/ERC20_Mintable.sol";
 import "./tokenStandards/ERC20_Capped.sol";
+import "./tokenStandards/ERC20_Pepper.sol";
 
 
 contract ErcFactory{
@@ -34,5 +35,12 @@ contract ErcFactory{
   emit TokenCreated(address(newToken));
 
   return address(newToken);
+}
+
+function createPepperToken(uint256 initialSupply, string memory name, string memory symbol)external returns(address){
+  ERC20_Pepper newToken = new ERC20_Pepper(msg.sender, initialSupply, name, symbol);
+  emit TokenCreated(address(newToken));
+
+return address(newToken);
 }
 }
